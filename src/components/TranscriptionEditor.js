@@ -15,7 +15,7 @@ export default function TranscriptionEditor({
 
   return (
     <>
-      <div className="grid grid-cols-3 sticky top-0 bg-violet-800/80 p-2 rounded-md">
+      <div className="grid grid-cols-3 sticky top-0 bg-gray-800 p-2 rounded-md">
         <div>From</div>
         <div>End</div>
         <div>Content</div>

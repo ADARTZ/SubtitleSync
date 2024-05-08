@@ -3,11 +3,15 @@ import {transcriptionItemsToSrt} from "@/libs/awsTranscriptionHelpers";
 import {FFmpeg} from "@ffmpeg/ffmpeg";
 import {toBlobURL, fetchFile} from "@ffmpeg/util";
 import {useEffect, useState, useRef} from "react";
-import roboto from './../fonts/Roboto-Regular.ttf';
-import robotoBold from './../fonts/Roboto-Bold.ttf';
+// import roboto from './../fonts/Roboto-Regular.ttf';
+import notosans from './../fonts/NotoSans-Regular.ttf';
+import notosansBold from './../fonts/NotoSans-Bold.ttf';
+// import krutidev from './../fonts/KrutiDev-Regular.ttf';
+// import krutidevBold from './../fonts/KrutiDev-Bold.ttf';
+// import robotoBold from './../fonts/Roboto-Bold.ttf';
 
 export default function ResultVideo({filename,transcriptionItems}) {
-  const videoUrl = "https://dawid-epic-captions.s3.amazonaws.com/"+filename;
+  const videoUrl = "https://adarsh-subtitlesynth.s3.amazonaws.com/"+filename;
   const [loaded, setLoaded] = useState(false);
   const [primaryColor, setPrimaryColor] = useState('#FFFFFF');
   const [outlineColor, setOutlineColor] = useState('#000000');
@@ -27,8 +31,8 @@ export default function ResultVideo({filename,transcriptionItems}) {
       coreURL: await toBlobURL(`${baseURL}/ffmpeg-core.js`, 'text/javascript'),
       wasmURL: await toBlobURL(`${baseURL}/ffmpeg-core.wasm`, 'application/wasm'),
     });
-    await ffmpeg.writeFile('/tmp/roboto.ttf', await fetchFile(roboto));
-    await ffmpeg.writeFile('/tmp/roboto-bold.ttf', await fetchFile(robotoBold));
+    await ffmpeg.writeFile('/tmp/notosans.ttf', await fetchFile(notosans));
+    await ffmpeg.writeFile('/tmp/notosans-bold.ttf', await fetchFile(notosansBold));
     setLoaded(true);
   }
 
@@ -60,7 +64,7 @@ export default function ResultVideo({filename,transcriptionItems}) {
     await ffmpeg.exec([
       '-i', filename,
       '-preset', 'ultrafast',
-      '-vf', `subtitles=subs.srt:fontsdir=/tmp:force_style='Fontname=Roboto Bold,FontSize=30,MarginV=70,PrimaryColour=${toFFmpegColor(primaryColor)},OutlineColour=${toFFmpegColor(outlineColor)}'`,
+      '-vf', `subtitles=subs.srt:fontsdir=/tmp:force_style='Fontname=Noto Sans Bold,FontSize=30,MarginV=70,PrimaryColour=${toFFmpegColor(primaryColor)},OutlineColour=${toFFmpegColor(outlineColor)}'`,
       'output.mp4'
     ]);
     const data = await ffmpeg.readFile('output.mp4');
@@ -74,9 +78,9 @@ export default function ResultVideo({filename,transcriptionItems}) {
       <div className="mb-4">
         <button
           onClick={transcode}
-          className="bg-green-600 py-2 px-6 rounded-full inline-flex gap-2 border-2 border-purple-700/50 cursor-pointer">
+          className="bg-white/20 transform active:scale-x-75 p-1 rounded-full py-2 px-6 inline-flex gap-2 cursor-pointer hover:shadow-lg hover:-translate-y-1 transition duration-200">
           <SparklesIcon />
-          <span>Apply captions</span>
+          <span>Apply subtitles</span>
         </button>
       </div>
       <div>

@@ -50,13 +50,13 @@ export default function FilePage({params}) {
     <div>
       <div className="grid sm:grid-cols-2 gap-8 sm:gap-16">
         <div className="">
-          <h2 className="text-2xl mb-4 text-white/60">Transcription</h2>
+          <h2 className="text-2xl mb-4 text-white/80">Transcription</h2>
           <TranscriptionEditor
             awsTranscriptionItems={awsTranscriptionItems}
             setAwsTranscriptionItems={setAwsTranscriptionItems} />
         </div>
         <div>
-          <h2 className="text-2xl mb-4 text-white/60">Result</h2>
+          <h2 className="text-2xl mb-4 text-white/80">Result</h2>
           <ResultVideo
             filename={filename}
             transcriptionItems={awsTranscriptionItems} />

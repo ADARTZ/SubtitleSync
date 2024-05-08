@@ -1,5 +1,5 @@
 {
-  "name": "epic-captions",
+  "name": "quick-caption",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,9 +13,11 @@
     "@aws-sdk/client-transcribe": "^3.418.0",
     "@ffmpeg/ffmpeg": "^0.12.6",
     "@ffmpeg/util": "^0.12.1",
+    "animate.css": "^4.1.1",
     "aws-crt": "^1.18.0",
     "axios": "^1.5.1",
-    "next": "latest",
+    "framer-motion": "^11.0.3",
+    "next": "^14.1.1-canary.74",
     "react": "latest",
     "react-dom": "latest",
     "uniqid": "^5.4.0"
